@@ -1,0 +1,293 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "description": "Lista completa de Google Dorks organizados por categoria",
+    "warning": "Use apenas em sistemas que você possui ou tem autorização explícita"
+  },
+  "dork_categories": {
+    "paineis_admin": {
+      "description": "Dorks para encontrar painéis administrativos",
+      "dorks": [
+        "site:{domain} inurl:admin",
+        "site:{domain} inurl:administrator",
+        "site:{domain} inurl:moderator",
+        "site:{domain} intitle:\"admin panel\"",
+        "site:{domain} intitle:\"login page\"",
+        "site:{domain} intitle:\"control panel\"",
+        "site:{domain} inurl:wp-admin",
+        "site:{domain} inurl:phpmyadmin",
+        "site:{domain} inurl:cpanel",
+        "site:{domain} inurl:webadmin",
+        "site:{domain} inurl:admincp",
+        "site:{domain} inurl:admloginuser.asp",
+        "site:{domain} inurl:admin_login.asp",
+        "site:{domain} intitle:\"Dashboard\" inurl:admin",
+        "site:{domain} inurl:admin/login.php",
+        "site:{domain} inurl:panel",
+        "site:{domain} inurl:console"
+      ]
+    },
+    "arquivos_sensiveis": {
+      "description": "Dorks para encontrar arquivos sensíveis",
+      "dorks": [
+        "site:{domain} filetype:sql \"password\"",
+        "site:{domain} filetype:sql intext:password",
+        "site:{domain} filetype:log inurl:password",
+        "site:{domain} filetype:bak inurl:backup",
+        "site:{domain} filetype:conf inurl:config",
+        "site:{domain} filetype:env \"DB_PASSWORD\"",
+        "site:{domain} filetype:txt inurl:passwords",
+        "site:{domain} filetype:xls inurl:password",
+        "site:{domain} filetype:xlsx inurl:password",
+        "site:{domain} filetype:doc inurl:password",
+        "site:{domain} ext:ini intext:password",
+        "site:{domain} ext:cfg intext:password",
+        "site:{domain} filetype:properties intext:password",
+        "site:{domain} ext:xml intext:password"
+      ]
+    },
+    "diretorios_expostos": {
+      "description": "Dorks para encontrar diretórios com listagem aberta",
+      "dorks": [
+        "site:{domain} intitle:\"index of\" \"parent directory\"",
+        "site:{domain} intitle:\"index of\" password",
+        "site:{domain} intitle:\"index of\" backup",
+        "site:{domain} intitle:\"index of\" config",
+        "site:{domain} intitle:\"index of\" \"database\"",
+        "site:{domain} intitle:\"index of\" \".git\"",
+        "site:{domain} intitle:\"index of\" \".env\"",
+        "site:{domain} intitle:\"index of\" inurl:admin",
+        "site:{domain} intitle:\"index of\" \".sql\"",
+        "site:{domain} intitle:\"index of\" private"
+      ]
+    },
+    "paginas_login": {
+      "description": "Dorks para encontrar páginas de login",
+      "dorks": [
+        "site:{domain} inurl:login.php",
+        "site:{domain} inurl:signin.php",
+        "site:{domain} inurl:auth.php",
+        "site:{domain} intitle:\"Login Page\"",
+        "site:{domain} inurl:login intitle:\"Admin\"",
+        "site:{domain} inurl:wp-login.php",
+        "site:{domain} inurl:user/login",
+        "site:{domain} inurl:member/login",
+        "site:{domain} inurl:signin",
+        "site:{domain} intitle:\"sign in\"",
+        "site:{domain} inurl:authenticate"
+      ]
+    },
+    "erros_debug": {
+      "description": "Dorks para encontrar erros e mensagens de debug",
+      "dorks": [
+        "site:{domain} intext:\"sql syntax near\"",
+        "site:{domain} intext:\"syntax error has occurred\"",
+        "site:{domain} intext:\"incorrect syntax near\"",
+        "site:{domain} intext:\"unexpected end of SQL command\"",
+        "site:{domain} intext:\"Warning: mysql_connect()\"",
+        "site:{domain} intext:\"Warning: mysql_query()\"",
+        "site:{domain} intext:\"Warning: pg_connect()\"",
+        "site:{domain} intitle:\"Error Occurred While Processing Request\"",
+        "site:{domain} intext:\"Server Error in '/' Application\"",
+        "site:{domain} intext:\"Microsoft OLE DB Provider for SQL Server error\"",
+        "site:{domain} intext:\"error in your SQL syntax\"",
+        "site:{domain} intext:\"Fatal error\"",
+        "site:{domain} intext:\"Parse error\""
+      ]
+    },
+    "arquivos_configuracao": {
+      "description": "Dorks para encontrar arquivos de configuração",
+      "dorks": [
+        "site:{domain} filetype:env DB_PASSWORD",
+        "site:{domain} filetype:config inurl:web.config",
+        "site:{domain} filetype:ini intext:database",
+        "site:{domain} filetype:properties intext:password",
+        "site:{domain} inurl:config.php dbase_uname",
+        "site:{domain} intitle:index.of config.php",
+        "site:{domain} ext:xml intext:password",
+        "site:{domain} inurl:settings.php",
+        "site:{domain} inurl:database.yml",
+        "site:{domain} filetype:json intext:password"
+      ]
+    },
+    "banco_dados": {
+      "description": "Dorks para encontrar informações de banco de dados",
+      "dorks": [
+        "site:{domain} filetype:sql intext:\"INSERT INTO\"",
+        "site:{domain} filetype:sql intext:\"CREATE TABLE\"",
+        "site:{domain} filetype:sql \"phpMyAdmin\"",
+        "site:{domain} inurl:phpmyadmin intext:\"root@localhost\"",
+        "site:{domain} intitle:\"phpMyAdmin\" \"Welcome to phpMyAdmin\"",
+        "site:{domain} inurl:\"/phpmyadmin/index.php\"",
+        "site:{domain} ext:sql intext:@gmail.com",
+        "site:{domain} filetype:sql \"dump\""
+      ]
+    },
+    "arquivos_backup": {
+      "description": "Dorks para encontrar arquivos de backup",
+      "dorks": [
+        "site:{domain} filetype:bak",
+        "site:{domain} filetype:old",
+        "site:{domain} filetype:backup",
+        "site:{domain} ext:bak",
+        "site:{domain} ext:old",
+        "site:{domain} inurl:backup filetype:sql",
+        "site:{domain} intitle:\"index of\" backup",
+        "site:{domain} inurl:backup",
+        "site:{domain} filetype:tar",
+        "site:{domain} filetype:gz",
+        "site:{domain} filetype:zip"
+      ]
+    },
+    "documentos_sensiveis": {
+      "description": "Dorks para encontrar documentos sensíveis",
+      "dorks": [
+        "site:{domain} filetype:pdf confidential",
+        "site:{domain} filetype:doc confidential",
+        "site:{domain} filetype:xls \"password\"",
+        "site:{domain} filetype:xlsx \"username\"",
+        "site:{domain} ext:txt intext:@gmail.com password",
+        "site:{domain} filetype:pdf intext:password",
+        "site:{domain} filetype:docx \"confidential\"",
+        "site:{domain} filetype:pptx \"internal\"",
+        "site:{domain} filetype:csv intext:email"
+      ]
+    },
+    "servidores_dispositivos": {
+      "description": "Dorks para encontrar servidores e dispositivos expostos",
+      "dorks": [
+        "site:{domain} intitle:\"Apache Status\" intext:\"Server Version\"",
+        "site:{domain} intitle:\"Apache2 Debian Default Page\"",
+        "site:{domain} intitle:\"IIS Windows Server\"",
+        "site:{domain} intitle:\"Welcome to nginx\"",
+        "site:{domain} intitle:\"RouterOS\"",
+        "site:{domain} inurl:8080 intitle:\"index of /\"",
+        "site:{domain} intitle:\"webcam\" inurl:view/view",
+        "site:{domain} intitle:\"Live View / - AXIS\""
+      ]
+    },
+    "git_controle_versao": {
+      "description": "Dorks para encontrar repositórios Git expostos",
+      "dorks": [
+        "site:{domain} intitle:\"index of\" \".git\"",
+        "site:{domain} inurl:\".git/config\"",
+        "site:{domain} inurl:\".git/HEAD\"",
+        "site:{domain} inurl:\"/.git/\"",
+        "site:{domain} filetype:git",
+        "site:{domain} inurl:\".gitignore\"",
+        "site:{domain} intitle:\"index of\" \".svn\""
+      ]
+    },
+    "apis_chaves": {
+      "description": "Dorks para encontrar APIs e chaves de acesso",
+      "dorks": [
+        "site:{domain} intext:\"api_key\"",
+        "site:{domain} intext:\"apikey\"",
+        "site:{domain} intext:\"api key\"",
+        "site:{domain} filetype:json intext:password",
+        "site:{domain} filetype:env intext:API_KEY",
+        "site:{domain} inurl:api",
+        "site:{domain} inurl:\"/api/v1/\"",
+        "site:{domain} intext:\"access_token\"",
+        "site:{domain} intext:\"secret_key\"",
+        "site:{domain} filetype:json intext:token"
+      ]
+    },
+    "informacoes_email": {
+      "description": "Dorks para encontrar informações de email",
+      "dorks": [
+        "site:{domain} filetype:xls inurl:email",
+        "site:{domain} filetype:csv inurl:email",
+        "site:{domain} intext:@gmail.com filetype:txt",
+        "site:{domain} intext:@yahoo.com filetype:xls",
+        "site:{domain} intext:@{domain}",
+        "site:{domain} filetype:csv intext:email",
+        "site:{domain} filetype:xlsx intext:@"
+      ]
+    },
+    "paginas_registro": {
+      "description": "Dorks para encontrar páginas de registro",
+      "dorks": [
+        "site:{domain} inurl:register.php",
+        "site:{domain} inurl:signup.php",
+        "site:{domain} inurl:join.php",
+        "site:{domain} intitle:\"create account\"",
+        "site:{domain} inurl:cadastro.php",
+        "site:{domain} inurl:registration",
+        "site:{domain} intitle:\"sign up\""
+      ]
+    },
+    "injecao_sql": {
+      "description": "Dorks para encontrar possíveis pontos de injeção SQL",
+      "dorks": [
+        "site:{domain} inurl:\".php?id=\"",
+        "site:{domain} inurl:\".php?cat=\"",
+        "site:{domain} inurl:\".php?page=\"",
+        "site:{domain} inurl:\".asp?id=\"",
+        "site:{domain} inurl:\".jsp?id=\"",
+        "site:{domain} inurl:index.php?id=",
+        "site:{domain} inurl:product.php?id=",
+        "site:{domain} inurl:news.php?id="
+      ]
+    },
+    "wordpress": {
+      "description": "Dorks específicos para WordPress",
+      "dorks": [
+        "site:{domain} inurl:wp-content/plugins/",
+        "site:{domain} intitle:\"Index of\" wp-content",
+        "site:{domain} inurl:readme.txt \"WordPress\"",
+        "site:{domain} inurl:changelog.txt",
+        "site:{domain} intitle:\"Dashboard\" inurl:wp-admin",
+        "site:{domain} inurl:wp-config.php",
+        "site:{domain} inurl:wp-includes/",
+        "site:{domain} inurl:wp-content/uploads/",
+        "site:{domain} inurl:xmlrpc.php",
+        "site:{domain} inurl:wp-json"
+      ]
+    },
+    "joomla": {
+      "description": "Dorks específicos para Joomla",
+      "dorks": [
+        "site:{domain} inurl:\"/administrator/index.php\"",
+        "site:{domain} inurl:com_content",
+        "site:{domain} inurl:component/",
+        "site:{domain} \"Joomla! - Open Source Content Management\"",
+        "site:{domain} inurl:configuration.php"
+      ]
+    },
+    "drupal": {
+      "description": "Dorks específicos para Drupal",
+      "dorks": [
+        "site:{domain} inurl:user/login",
+        "site:{domain} inurl:\"/node/\" \"Drupal\"",
+        "site:{domain} intext:\"Powered by Drupal\"",
+        "site:{domain} inurl:sites/default/files"
+      ]
+    },
+    "cameras_iot": {
+      "description": "Dorks para encontrar câmeras e dispositivos IoT",
+      "dorks": [
+        "site:{domain} intitle:\"webcamXP 5\"",
+        "site:{domain} intitle:\"Live View / - AXIS\"",
+        "site:{domain} inurl:view/view.shtml",
+        "site:{domain} intitle:\"EvoCam\" inurl:webcam",
+        "site:{domain} inurl:ViewerFrame?Mode=",
+        "site:{domain} intitle:\"WJ-NT104 Main Page\""
+      ]
+    },
+    "servidores_ftp": {
+      "description": "Dorks para encontrar servidores FTP expostos",
+      "dorks": [
+        "site:{domain} intitle:\"index of\" inurl:ftp",
+        "site:{domain} \"Index of\" inurl:ftp",
+        "site:{domain} intitle:\"Index of /\" +.htaccess"
+      ]
+    }
+  },
+  "custom_dorks": {
+    "description": "Espaço para adicionar dorks personalizados",
+    "examples": [
+      "site:{domain} YOUR_CUSTOM_DORK_HERE"
+    ]
+  }
+}
