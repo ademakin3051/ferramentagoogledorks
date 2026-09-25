@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "version": "2.0",
+    "version": "3.1",
     "description": "Lista completa de Google Dorks organizados por categoria",
     "warning": "Use apenas em sistemas que você possui ou tem autorização explícita"
   },
@@ -25,7 +25,8 @@
         "site:{domain} inurl:admin/login.php",
         "site:{domain} inurl:panel",
         "site:{domain} inurl:console"
-      ]
+      ],
+      "severity": "alto"
     },
     "arquivos_sensiveis": {
       "description": "Dorks para encontrar arquivos sensíveis",
@@ -44,7 +45,8 @@
         "site:{domain} ext:cfg intext:password",
         "site:{domain} filetype:properties intext:password",
         "site:{domain} ext:xml intext:password"
-      ]
+      ],
+      "severity": "critico"
     },
     "diretorios_expostos": {
       "description": "Dorks para encontrar diretórios com listagem aberta",
@@ -59,7 +61,8 @@
         "site:{domain} intitle:\"index of\" inurl:admin",
         "site:{domain} intitle:\"index of\" \".sql\"",
         "site:{domain} intitle:\"index of\" private"
-      ]
+      ],
+      "severity": "alto"
     },
     "paginas_login": {
       "description": "Dorks para encontrar páginas de login",
@@ -75,7 +78,8 @@
         "site:{domain} inurl:signin",
         "site:{domain} intitle:\"sign in\"",
         "site:{domain} inurl:authenticate"
-      ]
+      ],
+      "severity": "medio"
     },
     "erros_debug": {
       "description": "Dorks para encontrar erros e mensagens de debug",
@@ -93,7 +97,8 @@
         "site:{domain} intext:\"error in your SQL syntax\"",
         "site:{domain} intext:\"Fatal error\"",
         "site:{domain} intext:\"Parse error\""
-      ]
+      ],
+      "severity": "medio"
     },
     "arquivos_configuracao": {
       "description": "Dorks para encontrar arquivos de configuração",
@@ -101,14 +106,13 @@
         "site:{domain} filetype:env DB_PASSWORD",
         "site:{domain} filetype:config inurl:web.config",
         "site:{domain} filetype:ini intext:database",
-        "site:{domain} filetype:properties intext:password",
         "site:{domain} inurl:config.php dbase_uname",
         "site:{domain} intitle:index.of config.php",
-        "site:{domain} ext:xml intext:password",
         "site:{domain} inurl:settings.php",
         "site:{domain} inurl:database.yml",
         "site:{domain} filetype:json intext:password"
-      ]
+      ],
+      "severity": "critico"
     },
     "banco_dados": {
       "description": "Dorks para encontrar informações de banco de dados",
@@ -121,7 +125,8 @@
         "site:{domain} inurl:\"/phpmyadmin/index.php\"",
         "site:{domain} ext:sql intext:@gmail.com",
         "site:{domain} filetype:sql \"dump\""
-      ]
+      ],
+      "severity": "critico"
     },
     "arquivos_backup": {
       "description": "Dorks para encontrar arquivos de backup",
@@ -132,12 +137,12 @@
         "site:{domain} ext:bak",
         "site:{domain} ext:old",
         "site:{domain} inurl:backup filetype:sql",
-        "site:{domain} intitle:\"index of\" backup",
         "site:{domain} inurl:backup",
         "site:{domain} filetype:tar",
         "site:{domain} filetype:gz",
         "site:{domain} filetype:zip"
-      ]
+      ],
+      "severity": "alto"
     },
     "documentos_sensiveis": {
       "description": "Dorks para encontrar documentos sensíveis",
@@ -151,7 +156,8 @@
         "site:{domain} filetype:docx \"confidential\"",
         "site:{domain} filetype:pptx \"internal\"",
         "site:{domain} filetype:csv intext:email"
-      ]
+      ],
+      "severity": "alto"
     },
     "servidores_dispositivos": {
       "description": "Dorks para encontrar servidores e dispositivos expostos",
@@ -164,19 +170,20 @@
         "site:{domain} inurl:8080 intitle:\"index of /\"",
         "site:{domain} intitle:\"webcam\" inurl:view/view",
         "site:{domain} intitle:\"Live View / - AXIS\""
-      ]
+      ],
+      "severity": "medio"
     },
     "git_controle_versao": {
       "description": "Dorks para encontrar repositórios Git expostos",
       "dorks": [
-        "site:{domain} intitle:\"index of\" \".git\"",
         "site:{domain} inurl:\".git/config\"",
         "site:{domain} inurl:\".git/HEAD\"",
         "site:{domain} inurl:\"/.git/\"",
         "site:{domain} filetype:git",
         "site:{domain} inurl:\".gitignore\"",
         "site:{domain} intitle:\"index of\" \".svn\""
-      ]
+      ],
+      "severity": "critico"
     },
     "apis_chaves": {
       "description": "Dorks para encontrar APIs e chaves de acesso",
@@ -184,14 +191,14 @@
         "site:{domain} intext:\"api_key\"",
         "site:{domain} intext:\"apikey\"",
         "site:{domain} intext:\"api key\"",
-        "site:{domain} filetype:json intext:password",
         "site:{domain} filetype:env intext:API_KEY",
         "site:{domain} inurl:api",
         "site:{domain} inurl:\"/api/v1/\"",
         "site:{domain} intext:\"access_token\"",
         "site:{domain} intext:\"secret_key\"",
         "site:{domain} filetype:json intext:token"
-      ]
+      ],
+      "severity": "critico"
     },
     "informacoes_email": {
       "description": "Dorks para encontrar informações de email",
@@ -201,9 +208,9 @@
         "site:{domain} intext:@gmail.com filetype:txt",
         "site:{domain} intext:@yahoo.com filetype:xls",
         "site:{domain} intext:@{domain}",
-        "site:{domain} filetype:csv intext:email",
         "site:{domain} filetype:xlsx intext:@"
-      ]
+      ],
+      "severity": "medio"
     },
     "paginas_registro": {
       "description": "Dorks para encontrar páginas de registro",
@@ -215,7 +222,8 @@
         "site:{domain} inurl:cadastro.php",
         "site:{domain} inurl:registration",
         "site:{domain} intitle:\"sign up\""
-      ]
+      ],
+      "severity": "baixo"
     },
     "injecao_sql": {
       "description": "Dorks para encontrar possíveis pontos de injeção SQL",
@@ -228,7 +236,8 @@
         "site:{domain} inurl:index.php?id=",
         "site:{domain} inurl:product.php?id=",
         "site:{domain} inurl:news.php?id="
-      ]
+      ],
+      "severity": "alto"
     },
     "wordpress": {
       "description": "Dorks específicos para WordPress",
@@ -243,7 +252,8 @@
         "site:{domain} inurl:wp-content/uploads/",
         "site:{domain} inurl:xmlrpc.php",
         "site:{domain} inurl:wp-json"
-      ]
+      ],
+      "severity": "medio"
     },
     "joomla": {
       "description": "Dorks específicos para Joomla",
@@ -253,27 +263,28 @@
         "site:{domain} inurl:component/",
         "site:{domain} \"Joomla! - Open Source Content Management\"",
         "site:{domain} inurl:configuration.php"
-      ]
+      ],
+      "severity": "medio"
     },
     "drupal": {
       "description": "Dorks específicos para Drupal",
       "dorks": [
-        "site:{domain} inurl:user/login",
         "site:{domain} inurl:\"/node/\" \"Drupal\"",
         "site:{domain} intext:\"Powered by Drupal\"",
         "site:{domain} inurl:sites/default/files"
-      ]
+      ],
+      "severity": "medio"
     },
     "cameras_iot": {
       "description": "Dorks para encontrar câmeras e dispositivos IoT",
       "dorks": [
         "site:{domain} intitle:\"webcamXP 5\"",
-        "site:{domain} intitle:\"Live View / - AXIS\"",
         "site:{domain} inurl:view/view.shtml",
         "site:{domain} intitle:\"EvoCam\" inurl:webcam",
         "site:{domain} inurl:ViewerFrame?Mode=",
         "site:{domain} intitle:\"WJ-NT104 Main Page\""
-      ]
+      ],
+      "severity": "alto"
     },
     "servidores_ftp": {
       "description": "Dorks para encontrar servidores FTP expostos",
@@ -281,7 +292,8 @@
         "site:{domain} intitle:\"index of\" inurl:ftp",
         "site:{domain} \"Index of\" inurl:ftp",
         "site:{domain} intitle:\"Index of /\" +.htaccess"
-      ]
+      ],
+      "severity": "alto"
     }
   },
   "custom_dorks": {

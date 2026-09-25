@@ -7,6 +7,32 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ---
 
+## [3.1.0] - 2026-09-25
+
+### 🐛 Corrigido
+- **Bug crítico:** buscas sem resultado eram contadas como *erro* e falhas de API como *"sem resultados"*. Agora há status explícitos (`FOUND`, `EMPTY`, `ERROR`, `QUOTA`).
+- Base de dorks agora é carregada pelo caminho absoluto do script (funcionava só a partir da pasta do projeto).
+- `except:` genéricos substituídos por exceções específicas com mensagem.
+- Normalização de domínio via regex (o `replace('www.','')` removia "www." do meio do texto).
+- Máscara da API Key mostra apenas os últimos 4 caracteres.
+- Suporte a Windows (`cls`/`clear`).
+
+### ✨ Adicionado
+- **Interface com `rich`** (tabelas, barra de progresso, painéis) com fallback em texto puro.
+- **Modo linha de comando** (`argparse`): `-d`, `--api`, `--api-key`, `-f`, `-o`, `-w`, `--gl`, `--hl`, `--open`.
+- **API Key** via env `SERPER_API_KEY` ou argumento, além da config salva.
+- **Relatórios em HTML, JSON, CSV e TXT** (antes só TXT).
+- **HTML clicável** no modo manual.
+- **Severidade por categoria** (crítico → baixo); resultados ordenados por severidade.
+- **Seleção de categorias** no modo interativo (economiza créditos da API).
+- **Busca paralela** (`ThreadPoolExecutor`) com parada automática ao esgotar a cota.
+- **Testes** (`pytest`) e lint (`ruff`); `requirements.txt` e `pyproject.toml`.
+
+### 🔄 Alterado
+- Base de dorks: 8 duplicatas removidas (178 → **170 dorks**).
+
+---
+
 ## [3.0.0] - 2025-01-02
 
 ### 🎉 Lançamento Major - Totalmente Remodelado
