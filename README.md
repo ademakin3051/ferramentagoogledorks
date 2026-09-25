@@ -56,12 +56,13 @@ O **Google Dork Scanner v3.0** é uma ferramenta de código aberto para profissi
 
 ### Por que usar esta ferramenta?
 
-- ✅ **167+ dorks** organizados em 20 categorias
-- ✅ **Zero bloqueio** do Google
-- ✅ **Interface moderna** com cores e KPIs
-- ✅ **API Key salva automaticamente** para próximas execuções
-- ✅ **Relatórios** salvam apenas resultados válidos
-- ✅ **Código limpo** e fácil de entender
+- ✅ **170 dorks** classificados por severidade (crítico → baixo) em 20 categorias
+- ✅ **Interface moderna** com [rich](https://github.com/Textualize/rich) (tabelas, barra de progresso, cores) — e fallback em texto puro
+- ✅ **Modo linha de comando** (`argparse`) para automação e scripts
+- ✅ **Busca paralela** via API Serper.dev, com detecção de cota esgotada
+- ✅ **Relatórios em HTML, JSON, CSV e TXT** — só com os resultados encontrados
+- ✅ **API Key** via argumento, variável de ambiente ou config salva (permissão `600`)
+- ✅ **Testes automatizados** (`pytest`) e lint (`ruff`)
 
 ---
 
@@ -152,13 +153,46 @@ python3 dork_scanner_v3.py
 
 ## 🎮 Como Usar
 
-### Passo 1: Executar o Script
+### Instalar a dependência opcional (interface bonita)
+
+```bash
+pip install -r requirements.txt   # instala o "rich"
+```
+
+> Sem o `rich`, o script continua funcionando em modo texto simples.
+
+### Modo Interativo (menu)
 
 ```bash
 python3 dork_scanner_v3.py
 ```
 
-### Passo 2: Escolher o Modo
+### Modo Linha de Comando (automação)
+
+```bash
+# Gera links + relatório HTML clicável (modo manual)
+python3 dork_scanner_v3.py -d exemplo.com
+
+# Busca automática via API e salva relatório JSON
+export SERPER_API_KEY="sua_chave"
+python3 dork_scanner_v3.py -d exemplo.com --api -f json -o relatorio.json
+
+# Busca paralela com 10 workers e resultados em CSV
+python3 dork_scanner_v3.py -d exemplo.com --api -w 10 -f csv
+```
+
+| Opção | Descrição |
+|-------|-----------|
+| `-d, --domain` | Domínio alvo |
+| `--api` | Usa a API Serper.dev (busca automática) |
+| `--api-key` | Chave da API (ou use a env `SERPER_API_KEY`) |
+| `-f, --format` | Formato do relatório: `html`, `json`, `csv`, `txt` |
+| `-o, --output` | Caminho do arquivo de saída |
+| `-w, --workers` | Buscas paralelas no modo API (padrão: 5) |
+| `--gl` / `--hl` | País / idioma da busca (padrão: `br` / `pt`) |
+| `--open` | Abre o HTML gerado no navegador (modo manual) |
+
+### Passo a passo do menu interativo
 
 Você verá o menu principal:
 
@@ -183,7 +217,7 @@ Você verá o menu principal:
     • Dashboard com KPIs e estatísticas
     • Salva APENAS resultados encontrados
     • ✓ 2,500 buscas GRÁTIS/mês
-    • ✓ ZERO bloqueio garantido
+    • ✓ Não usa seu IP diretamente
 
 [0] ❌ SAIR
 
@@ -221,11 +255,11 @@ Dependendo do modo escolhido, você verá links clicáveis (Modo 1) ou um dashbo
 ```
 ▼▼▼ PAINÉIS ADMINISTRATIVOS (14 dorks) ▼▼▼
 
-[1/167] site:alvo.com inurl:admin
+[1/170] site:alvo.com inurl:admin
     https://www.google.com/search?q=site%3Aalvo.com+inurl%3Aadmin
     ↑↑↑ CLICÁVEL! ↑↑↑
 
-[2/167] site:alvo.com inurl:login
+[2/170] site:alvo.com inurl:login
     https://www.google.com/search?q=site%3Aalvo.com+inurl%3Alogin
     ↑↑↑ CLICÁVEL! ↑↑↑
 ```
@@ -251,10 +285,10 @@ Dependendo do modo escolhido, você verá links clicáveis (Modo 1) ou um dashbo
 ```
 ▶ Painéis Administrativos
 ──────────────────────────────────────────────────────────────────
-[1/167] site:alvo.com inurl:admin ✓ 3 resultado(s)
-[2/167] site:alvo.com inurl:administrator ✗ Sem resultados
-[3/167] site:alvo.com inurl:moderator ✗ Sem resultados
-[4/167] site:alvo.com inurl:wp-admin ✓ 2 resultado(s)
+[1/170] site:alvo.com inurl:admin ✓ 3 resultado(s)
+[2/170] site:alvo.com inurl:administrator ✗ Sem resultados
+[3/170] site:alvo.com inurl:moderator ✗ Sem resultados
+[4/170] site:alvo.com inurl:wp-admin ✓ 2 resultado(s)
 ```
 
 **Dashboard final:**
@@ -264,7 +298,7 @@ Dependendo do modo escolhido, você verá links clicáveis (Modo 1) ou um dashbo
                          KPIs PRINCIPAIS
 ═══════════════════════════════════════════════════════════════════
 
-  Total Testado:     167 dorks
+  Total Testado:     170 dorks
   ✓ COM Resultados:  5 dorks
   ✗ SEM Resultados:  162 dorks
 
@@ -318,7 +352,7 @@ rm ~/.dork_scanner_config.json && python3 dork_scanner_v3.py
 
 ## 📚 Categorias de Dorks
 
-O scanner inclui **167 dorks** organizados em **20 categorias**:
+O scanner inclui **170 dorks** organizados em **20 categorias**:
 
 | # | Categoria | Descrição | Dorks |
 |---|-----------|-----------|-------|
@@ -403,9 +437,11 @@ ModuleNotFoundError: No module named 'xxx'
 ```
 
 **Solução:**
-O script usa apenas bibliotecas padrão do Python. Se ocorrer esse erro:
+O núcleo do script usa apenas bibliotecas padrão. A única dependência opcional é o `rich` (interface). Instale com:
 
 ```bash
+pip install -r requirements.txt
+
 # Verificar versão do Python
 python3 --version
 
@@ -511,7 +547,7 @@ source ~/.bashrc
 
 **Solução:**
 
-O script funciona sem o arquivo JSON (usa dorks internos), mas para ter todos os 167 dorks:
+O script funciona sem o arquivo JSON (usa dorks internos), mas para ter todos os 170 dorks:
 
 ```bash
 # Verificar se o arquivo existe
@@ -533,7 +569,7 @@ wget https://raw.githubusercontent.com/ademakin3051/google-dork-scanner/main/dor
 
 ### P: Quantas buscas posso fazer no Serper.dev?
 
-**R:** O plano gratuito oferece **2,500 buscas por mês**. Com 167 dorks por scan, você pode fazer aproximadamente **15 scans completos** por mês de graça.
+**R:** O plano gratuito oferece **2,500 buscas por mês**. Com 170 dorks por scan, você pode fazer aproximadamente **15 scans completos** por mês de graça.
 
 ---
 
@@ -574,11 +610,20 @@ Contribuições são bem-vindas! Veja como contribuir:
 5. Abra um **Pull Request**
 
 ### Ideias para contribuição:
+- [x] Export para JSON/CSV/HTML
+- [x] Modo linha de comando (CLI)
 - [ ] Adicionar mais dorks
-- [ ] Suporte a múltiplos domínios
-- [ ] Export para JSON/CSV
+- [ ] Suporte a múltiplos domínios de uma vez
 - [ ] Interface web
 - [ ] Integração com outras APIs
+
+### Rodar os testes
+
+```bash
+pip install pytest ruff
+pytest        # testes
+ruff check .  # lint
+```
 
 
 Feito com ❤️ para a comunidade de segurança

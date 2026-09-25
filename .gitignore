@@ -116,3 +116,10 @@ Thumbs.db
 scan_*.txt
 report_*.txt
 .dork_scanner_config.json
+
+# Relatórios e links gerados
+scan_*.txt
+scan_*.json
+scan_*.csv
+scan_*.html
+dorks_*.html

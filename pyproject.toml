@@ -1,0 +1,24 @@
+[project]
+name = "google-dork-scanner"
+version = "3.1.0"
+description = "Ferramenta de auditoria de segurança com Google Dorks (uso autorizado apenas)."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = ["rich>=13.0"]
+
+[project.scripts]
+dorkscanner = "dork_scanner_v3:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "ruff>=0.4"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,2 @@
+# Interface de terminal (opcional — o script funciona sem, em modo texto).
+rich>=13.0
